@@ -1,0 +1,18 @@
+1. Prompt:
+   "How do I connect to ClickHouse using JWT authentication in Python?"
+2. Prompt:
+   "How do I use requests to send headers including JWT token to a ClickHouse database?"
+3. Prompt:
+   "How to upload and parse CSV files in Flask?"
+4. Prompt:
+   "How to display checkbox list for column selection in HTML/JS?"
+5. Prompt:
+   "How to implement a simple React/HTML frontend with buttons and file input?"
+6. Prompt:
+   "How to execute SQL queries in ClickHouse using Python and display number of inserted rows?"
+7. Prompt:
+   "How to handle connection/authentication errors in Flask and return friendly messages?"
+8. Prompt:
+   "How to implement a progress bar in HTML for backend data processing?"
+9. Prompt:
+    "How to handle multi-table join in ClickHouse via SQL using JOIN keys?"
