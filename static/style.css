@@ -1,0 +1,169 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+fieldset {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+legend {
+    font-weight: bold;
+    color: #555;
+    padding: 0 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="file"],
+select {
+    width: calc(100% - 22px); /* Adjust for padding/border */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-top: 5px;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#column-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+}
+#column-list label {
+    margin-bottom: 5px; /* Smaller margin for column items */
+}
+
+.status, .result, .error, #download-area {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.status {
+    background-color: #e0e0e0;
+    border-left: 5px solid #777;
+    color: #333;
+}
+.status.success {
+     background-color: #d4edda;
+     border-left-color: #28a745;
+     color: #155724;
+}
+.status.error {
+     background-color: #f8d7da;
+     border-left-color: #dc3545;
+     color: #721c24;
+}
+
+
+.result {
+    background-color: #d1ecf1;
+    border-left: 5px solid #007bff;
+    color: #0c5460;
+    display: none; /* Initially hidden */
+}
+
+.error {
+    background-color: #f8d7da;
+    border-left: 5px solid #dc3545;
+    color: #721c24;
+    display: none; /* Initially hidden */
+}
+
+#download-area a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+#download-area a:hover {
+     background-color: #218838;
+}
+
+#upload-status {
+    font-style: italic;
+    color: #555;
+    margin-left: 10px;
+}
+
+#preview-section {
+    margin-top: 20px;
+    border-color: #007bff;
+}
+#preview-section legend {
+    color: #007bff;
+}
+#preview-table-container {
+     max-height: 400px;
+     overflow: auto;
+}
+#preview-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+#preview-table-container th, #preview-table-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-size: 0.9em;
+    white-space: nowrap; /* Prevent text wrapping in cells */
+}
+#preview-table-container th {
+    background-color: #f2f2f2;
+    position: sticky; /* Make header sticky */
+    top: 0; /* Stick to the top of the container */
+}

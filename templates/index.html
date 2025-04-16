@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClickHouse <-> Flat File Ingestor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>ClickHouse <-> Flat File Ingestor</h1>
+
+    <div id="status-area" class="status">Status: Idle</div>
+    <div id="result-area" class="result"></div>
+    <div id="error-area" class="error"></div>
+    <div id="download-area"></div>
+
+    <form id="ingestion-form">
+
+        <fieldset>
+            <legend>1. Select Source</legend>
+            <label>
+                <input type="radio" name="sourceType" value="clickhouse" checked onchange="toggleSections()"> ClickHouse
+            </label>
+            <label>
+                <input type="radio" name="sourceType" value="flatfile" onchange="toggleSections()"> Flat File (CSV/TSV)
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>2. Select Target</legend>
+             <label>
+                <input type="radio" name="targetType" value="flatfile" checked onchange="toggleSections()"> Flat File (CSV/TSV)
+            </label>
+            <label>
+                <input type="radio" name="targetType" value="clickhouse" onchange="toggleSections()"> ClickHouse
+            </label>
+        </fieldset>
+
+        <fieldset id="clickhouse-config-section">
+            <legend>ClickHouse Configuration</legend>
+            <label for="ch-host">Host:</label>
+            <input type="text" id="ch-host" name="ch-host" value="localhost" required><br>
+
+            <label for="ch-port">Port:</label>
+            <input type="number" id="ch-port" name="ch-port" value="8123" required><br> <label for="ch-db">Database:</label>
+            <input type="text" id="ch-db" name="ch-db" value="default" required><br>
+
+            <label for="ch-user">User (Optional):</label>
+            <input type="text" id="ch-user" name="ch-user"><br>
+
+            <label for="ch-token">JWT Token (or Password if User is set):</label>
+            <input type="password" id="ch-token" name="ch-token"><br> <button type="button" id="btn-connect-ch">Test Connection</button>
+            <button type="button" id="btn-load-tables" disabled>Load Tables</button> <br>
+
+            <label for="ch-table-select">Select Table (Source):</label>
+            <select id="ch-table-select" name="ch-table-select" disabled>
+                <option value="">-- Load Tables First --</option>
+            </select><br>
+
+             <label for="ch-target-table" class="target-ch-only">Target Table Name (Target):</label>
+            <input type="text" id="ch-target-table" name="ch-target-table" class="target-ch-only" placeholder="Enter name for new/existing table"><br>
+
+        </fieldset>
+
+        <fieldset id="flatfile-config-section">
+            <legend>Flat File Configuration</legend>
+             <div class="source-ff-only">
+                <label for="flatfile-upload">Upload Source File:</label>
+                <input type="file" id="flatfile-upload" name="flatFile" accept=".csv,.tsv,.txt"><br>
+                <span id="upload-status"></span><br>
+                <input type="hidden" id="uploaded-filename" name="uploaded-filename"> </div>
+
+             <div class="target-ff-only">
+                 <label for="ff-output-name">Output File Name (Optional):</label>
+                 <input type="text" id="ff-output-name" name="ff-output-name" placeholder="e.g., clickhouse_export"><br>
+                 <small>A unique ID and .csv extension will be added.</small><br>
+             </div>
+
+             <label for="ff-delimiter">Delimiter:</label>
+            <select id="ff-delimiter" name="ff-delimiter">
+                <option value="comma" selected>Comma (,)</option>
+                <option value="tab">Tab (\t)</option>
+                <option value="semicolon">Semicolon (;)</option>
+                <option value="pipe">Pipe (|)</option>
+                 <option value="space">Space ( )</option>
+            </select><br>
+        </fieldset>
+
+         <fieldset>
+            <legend>3. Select Columns</legend>
+             <button type="button" id="btn-load-columns">Load Columns from Source</button>
+             <button type="button" id="btn-select-all-columns" style="margin-left: 10px;" disabled>Select All</button>
+             <button type="button" id="btn-deselect-all-columns" style="margin-left: 5px;" disabled>Deselect All</button>
+            <div id="column-list">
+                <p>Load columns after configuring the source.</p>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>4. Actions</legend>
+             <button type="button" id="btn-preview" disabled>Preview Data (First 100 Rows)</button>
+            <button type="button" id="btn-start-ingestion" disabled>Start Ingestion</button>
+        </fieldset>
+
+    </form>
+
+    <fieldset id="preview-section" style="display: none;">
+        <legend>Data Preview</legend>
+        <div id="preview-table-container">
+            </div>
+    </fieldset>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
